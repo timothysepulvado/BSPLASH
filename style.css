@@ -200,7 +200,7 @@ body {
     margin: 0;
     object-fit: contain;
     box-sizing: border-box;
-    transform: translateY(3px);
+    margin-bottom: -3px;
 }
 
 /* Animations */
