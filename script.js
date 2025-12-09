@@ -10,6 +10,42 @@ document.addEventListener('DOMContentLoaded', () => {
         path: 'assets/json/dots.json'
     });
 
+    // Cookie consent banner
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+
+    // Check if user has already made a choice
+    const cookieConsent = localStorage.getItem('cookieConsent');
+
+    if (!cookieConsent && cookieBanner) {
+        // Show banner after a short delay
+        setTimeout(() => {
+            cookieBanner.classList.add('show');
+        }, 1000);
+    }
+
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieBanner.classList.remove('show');
+            setTimeout(() => {
+                cookieBanner.classList.add('hidden');
+            }, 300);
+            // Enable analytics here if needed
+        });
+    }
+
+    if (declineBtn) {
+        declineBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'declined');
+            cookieBanner.classList.remove('show');
+            setTimeout(() => {
+                cookieBanner.classList.add('hidden');
+            }, 300);
+        });
+    }
+
     // Email form handling
     const emailForm = document.querySelector('.email-form');
 
