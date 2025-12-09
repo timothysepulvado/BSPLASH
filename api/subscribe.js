@@ -10,31 +10,40 @@ export default async function handler(req, res) {
     }
 
     try {
-        const response = await fetch('https://api.resend.com/emails', {
+        // Store in Supabase
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseKey = process.env.SUPABASE_API_KEY;
+
+        const response = await fetch(`${supabaseUrl}/rest/v1/email_signups`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`,
                 'Content-Type': 'application/json',
+                'Prefer': 'return=minimal',
             },
             body: JSON.stringify({
-                from: process.env.EMAIL_FROM,
-                to: process.env.EMAIL_TO_TEAM.split(',').map(e => e.trim()),
-                subject: 'New BrandStudios.AI Signup',
-                html: `<p>New signup from: <strong>${email}</strong></p>`,
+                email: email,
+                source: 'splash_page',
             }),
         });
 
-        const data = await response.json();
-        console.log('Resend response:', response.status, data);
-
         if (!response.ok) {
-            console.error('Resend error:', data);
-            throw new Error(data.message || 'Failed to send email');
+            const errorData = await response.json();
+            console.error('Supabase error:', errorData);
+
+            // Check if duplicate email
+            if (errorData.code === '23505') {
+                return res.status(200).json({ success: true, message: 'Already subscribed' });
+            }
+
+            throw new Error(errorData.message || 'Failed to save email');
         }
 
+        console.log('Email saved:', email);
         return res.status(200).json({ success: true });
     } catch (error) {
-        console.error('Email error:', error);
+        console.error('Subscribe error:', error);
         return res.status(500).json({ error: 'Failed to subscribe' });
     }
 }
