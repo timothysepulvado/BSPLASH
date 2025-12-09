@@ -13,20 +13,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // Email form handling
     const emailForm = document.querySelector('.email-form');
 
-    emailForm.addEventListener('submit', (e) => {
+    emailForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const emailInput = emailForm.querySelector('input[type="email"]');
         const email = emailInput.value.trim();
+        const wrapper = emailForm.querySelector('.email-input-wrapper');
 
         if (email) {
-            // Show success feedback
-            const wrapper = emailForm.querySelector('.email-input-wrapper');
-            wrapper.innerHTML = '<span style="color: var(--orange); font-style: italic;">Thanks! We\'ll be in touch.</span>';
+            // Show loading state
+            const originalHTML = wrapper.innerHTML;
+            wrapper.innerHTML = '<span style="color: var(--dark-blue);">Submitting...</span>';
 
-            // Here you would typically send the email to your backend
-            // For now, just log it
-            console.log('Email submitted:', email);
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                if (response.ok) {
+                    wrapper.innerHTML = '<span style="color: var(--orange);">Thanks! We\'ll be in touch.</span>';
+                } else {
+                    throw new Error('Failed to subscribe');
+                }
+            } catch (error) {
+                console.error('Subscription error:', error);
+                wrapper.innerHTML = '<span style="color: var(--orange);">Something went wrong. Please try again.</span>';
+
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    wrapper.innerHTML = originalHTML;
+                }, 3000);
+            }
         }
     });
 });
