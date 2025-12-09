@@ -1,0 +1,276 @@
+/* Fonts */
+@font-face {
+    font-family: 'PP Editorial New';
+    src: url('assets/fonts/PPEditorialNew-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Editorial New';
+    src: url('assets/fonts/PPEditorialNew-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PP Editorial New';
+    src: url('assets/fonts/PPEditorialNew-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Editorial New';
+    src: url('assets/fonts/PPEditorialNew-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* CSS Variables */
+:root {
+    --dark-blue: #0F1956;
+    --orange: #ED4C14;
+    --bg-gray: #EBEBEB;
+}
+
+/* Global Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-gray);
+    font-family: 'PP Editorial New', Georgia, serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Main Container */
+.splash-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    padding-bottom: 200px;
+}
+
+/* Lottie Animation */
+#lottie-animation {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 30px;
+}
+
+/* Headline */
+.headline {
+    width: 983px;
+    max-width: 100%;
+    font-family: 'PP Editorial New', Georgia, serif;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 72px;
+    letter-spacing: 0;
+    text-align: center;
+    color: var(--dark-blue);
+    margin: 0 0 40px 0;
+}
+
+.orange-text {
+    color: var(--orange);
+}
+
+.coming-soon {
+    display: block;
+}
+
+/* Email Form */
+.email-form {
+    margin-bottom: 40px;
+}
+
+.email-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.input-with-line {
+    width: 230px;
+    border-bottom: 1px solid var(--dark-blue);
+}
+
+.input-with-line input {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 40px;
+    letter-spacing: 0;
+    color: var(--dark-blue);
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    padding: 0;
+}
+
+.input-with-line input::placeholder {
+    color: var(--dark-blue);
+}
+
+
+/* Submit Button */
+.submit-btn {
+    width: 29px;
+    height: 29px;
+    background: var(--orange);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+.submit-btn:hover {
+    transform: scale(1.1);
+}
+
+.submit-btn .btn-circle {
+    display: none;
+}
+
+.submit-btn .btn-arrow {
+    width: 17px;
+    height: auto;
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    padding: 30px 40px 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* Tagline */
+.tagline {
+    font-family: 'PP Editorial New', Georgia, serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+    color: var(--dark-blue);
+    margin: 0 0 30px 0;
+}
+
+.tagline .orange-text {
+    color: var(--orange);
+}
+
+/* Logo */
+.logo {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Animations */
+.headline {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+}
+
+.email-form {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+}
+
+.footer {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.9s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .headline {
+        font-size: 48px;
+        line-height: 56px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 10vw;
+        height: auto;
+        line-height: 1.1;
+    }
+
+    .tagline {
+        font-size: 18px;
+        line-height: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .splash-container {
+        padding: 30px 20px;
+        padding-bottom: 150px;
+    }
+
+    #lottie-animation {
+        width: 60px;
+        height: 60px;
+    }
+
+    .headline {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .footer {
+        padding: 20px 20px 0;
+    }
+
+    .logo {
+        font-size: 12vw;
+    }
+
+    .tagline {
+        font-size: 16px;
+        line-height: 28px;
+    }
+}
