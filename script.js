@@ -58,8 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Calculate "Home" based on the Lottie Container's visual position
             const rect = animationWrapper.getBoundingClientRect();
             const centerX = window.innerWidth / 2;
-            const centerY = rect.top + (rect.height / 2);
-            const spacing = 24;
+            // Adjust Y to match where dots visually appear in Lottie (slightly above center)
+            const centerY = rect.top + (rect.height * 0.4);
+            const spacing = 28; // Slightly wider to match Lottie dot spacing
 
             balls[0].homeX = centerX - spacing;
             balls[0].homeY = centerY;
@@ -119,11 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Physics Constants
             const friction = 0.99;
-            const ballRadius = 6;
+            const ballRadius = 8; // Match Lottie dots
             const mouseHitRadius = 30;
-            const magneticRadius = 60;
-            const snapDistance = 15;
-            const snapSpeedLimit = 8;
+            const magneticRadius = 80; // Larger zone of influence
+            const snapDistance = 12;
+            const snapSpeedLimit = 6;
 
             if (mode === 'lottie') {
                 // === MODE: LOTTIE ===
@@ -177,17 +178,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // 2. Physics & Docking
                     if (!ball.docked) {
-                        // Gravity Well
+                        // Gravity Well - "thick syrup" effect
                         if (ball.safeToDock) {
                             const homeDx = ball.homeX - ball.x;
                             const homeDy = ball.homeY - ball.y;
                             const distToHome = Math.sqrt(homeDx*homeDx + homeDy*homeDy);
 
                             if (distToHome < magneticRadius) {
-                                ball.vx += homeDx * 0.03;
-                                ball.vy += homeDy * 0.03;
-                                ball.vx *= 0.9;
-                                ball.vy *= 0.9;
+                                // Calculate how deep into the magnetic field (0 at edge, 1 at center)
+                                const fieldStrength = 1 - (distToHome / magneticRadius);
+
+                                // Progressive pull force - stronger as ball gets closer
+                                const pullForce = 0.02 + (fieldStrength * 0.04);
+                                ball.vx += homeDx * pullForce;
+                                ball.vy += homeDy * pullForce;
+
+                                // Progressive drag - like moving through syrup (thicker near center)
+                                const drag = 0.92 - (fieldStrength * 0.15); // 0.92 at edge, 0.77 at center
+                                ball.vx *= drag;
+                                ball.vy *= drag;
                             }
 
                             const speed = Math.sqrt(ball.vx*ball.vx + ball.vy*ball.vy);
