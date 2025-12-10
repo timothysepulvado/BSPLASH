@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Use center ball home as reference
                 const dx = mouse.x - balls[1].homeX;
                 const dy = mouse.y - balls[1].homeY;
-                const dist = Math.sqrt(dx*dx + dy*dy);
+                const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < 40) {
                     // TRIGGER BREAKOUT
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 1. Mouse Interaction
                     const dx = mouse.x - ball.x;
                     const dy = mouse.y - ball.y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < mouseHitRadius) {
                         ball.docked = false;
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (ball.safeToDock) {
                             const homeDx = ball.homeX - ball.x;
                             const homeDy = ball.homeY - ball.y;
-                            const distToHome = Math.sqrt(homeDx*homeDx + homeDy*homeDy);
+                            const distToHome = Math.sqrt(homeDx * homeDx + homeDy * homeDy);
 
                             if (distToHome < magneticRadius) {
                                 // Calculate how deep into the magnetic field (0 at edge, 1 at center)
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 ball.vy *= drag;
                             }
 
-                            const speed = Math.sqrt(ball.vx*ball.vx + ball.vy*ball.vy);
+                            const speed = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
                             if (distToHome < snapDistance && speed < snapSpeedLimit) {
                                 ball.docked = true;
                                 ball.x = ball.homeX;
@@ -287,6 +287,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Re-open Cookies
+    const openCookiesBtn = document.getElementById('open-cookies');
+    if (openCookiesBtn) {
+        openCookiesBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            cookieBanner.classList.remove('hidden');
+            // Small delay to allow display:block to apply before transform
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 10);
+        });
+    }
+
     // --- 5. FORM HANDLING ---
     const emailForm = document.querySelector('.email-form');
     if (emailForm) {
@@ -294,22 +307,30 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             const btn = emailForm.querySelector('.submit-btn');
-            const input = emailForm.querySelector('input');
+            const inputs = emailForm.querySelectorAll('input');
             const message = emailForm.querySelector('.form-message');
-            const email = input.value.trim();
 
-            if (!email) return;
+            // Gather data
+            const formData = new FormData(emailForm);
+            const data = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone')
+            };
+
+            if (!data.email) return;
 
             // UI Loading State
             btn.classList.add('loading');
             btn.disabled = true;
-            input.disabled = true;
+            inputs.forEach(input => input.disabled = true);
 
             try {
                 const response = await fetch('/api/subscribe', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email }),
+                    body: JSON.stringify(data),
                 });
 
                 if (response.ok) {
@@ -317,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.classList.remove('loading');
                     btn.classList.add('success');
                     message.classList.add('visible');
-                    input.value = '';
+                    inputs.forEach(input => input.value = '');
                 } else {
                     throw new Error('Failed to subscribe');
                 }
@@ -326,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset UI on error
                 btn.classList.remove('loading');
                 btn.disabled = false;
-                input.disabled = false;
+                inputs.forEach(input => input.disabled = false);
                 alert('Something went wrong. Please try again.');
             }
         });
