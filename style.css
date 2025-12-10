@@ -68,7 +68,13 @@ html {
 /* --- 3. NEO-ANCHORS (Corner Crosses) --- */
 .neo-anchors {
     position: fixed;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1600px;
     pointer-events: none;
     z-index: 40;
     padding: 24px;
@@ -128,7 +134,11 @@ html {
 .neo-header {
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     width: 100%;
+    max-width: 1600px;
     padding: 24px 32px;
     display: flex;
     justify-content: space-between;
@@ -421,7 +431,11 @@ html {
 .footer {
     position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     width: 100%;
+    max-width: 1600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -711,6 +725,8 @@ html {
         position: relative;
         /* Fix overlap */
         bottom: auto;
+        left: auto;
+        transform: none;
         padding-bottom: 40px;
         margin-top: auto;
     }
