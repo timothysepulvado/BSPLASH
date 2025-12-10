@@ -55,6 +55,61 @@ body {
     position: relative;
 }
 
+/* Header */
+.neo-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 32px;
+    z-index: 40;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.3s forwards;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--dark-blue);
+}
+
+.legal-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legal-nav a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--dark-blue);
+    text-decoration: none;
+    opacity: 0.35;
+    transition: opacity 0.2s ease;
+}
+
+.legal-nav a:hover {
+    opacity: 0.7;
+}
+
+.legal-nav .divider {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: var(--dark-blue);
+    opacity: 0.25;
+}
+
 /* Main Container */
 .splash-container {
     flex: 1;
@@ -100,6 +155,12 @@ body {
 /* Email Form */
 .email-form {
     margin-bottom: 40px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .email-input-wrapper {
@@ -230,6 +291,79 @@ body {
     }
 }
 
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--dark-blue);
+    padding: 16px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.cookie-banner.show {
+    transform: translateY(0);
+}
+
+.cookie-banner.hidden {
+    display: none;
+}
+
+.cookie-banner p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: white;
+    margin: 0;
+}
+
+.cookie-banner a {
+    color: var(--orange);
+    text-decoration: none;
+}
+
+.cookie-banner a:hover {
+    text-decoration: underline;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.cookie-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.cookie-btn.accept {
+    background-color: var(--orange);
+    color: white;
+}
+
+.cookie-btn.decline {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cookie-btn:hover {
+    opacity: 0.8;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .headline {
@@ -278,5 +412,19 @@ body {
     .tagline {
         font-size: 16px;
         line-height: 28px;
+    }
+
+    .neo-header {
+        padding: 16px 20px;
+    }
+
+    .cookie-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .cookie-banner p {
+        font-size: 13px;
     }
 }
