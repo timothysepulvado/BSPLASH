@@ -380,6 +380,7 @@ body {
     right: 0;
     background-color: var(--dark-blue);
     padding: 16px 30px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0));
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -472,18 +473,25 @@ body {
         overflow-y: auto;
         height: auto;
         min-height: 100vh;
+        min-height: 100dvh; /* Dynamic viewport height - iOS Safari fix */
+        min-height: -webkit-fill-available; /* Fallback for older iOS */
     }
 
     body {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        min-height: 100dvh;
+        min-height: -webkit-fill-available;
+        padding-bottom: env(safe-area-inset-bottom, 0);
     }
 
     .splash-container {
-        padding: 60px 20px 30px;
+        padding: 20px 20px 30px;
+        padding-top: calc(20px + env(safe-area-inset-top, 0));
         min-height: auto;
-        flex: none;
+        flex: 1 1 auto;
         justify-content: flex-start;
-        padding-bottom: 30px;
     }
 
     #lottie-animation {
@@ -548,6 +556,8 @@ body {
     .footer {
         position: relative;
         padding: 20px 16px 0;
+        flex-shrink: 0;
+        margin-top: auto;
     }
 
     .logo {
@@ -584,7 +594,8 @@ body {
 
 @media (max-width: 480px) {
     .splash-container {
-        padding: 50px 16px 20px;
+        padding: 16px 16px 20px;
+        padding-top: calc(16px + env(safe-area-inset-top, 0));
     }
 
     #lottie-animation {
