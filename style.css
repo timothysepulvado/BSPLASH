@@ -386,45 +386,131 @@ body {
 }
 
 @media (max-width: 768px) {
+    body, html {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+    }
+
     .splash-container {
-        padding: 30px 20px;
-        padding-bottom: 150px;
+        padding: 80px 20px 120px;
+        min-height: auto;
+        justify-content: flex-start;
     }
 
     #lottie-animation {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
     }
 
     .headline {
-        font-size: 32px;
-        line-height: 40px;
+        font-size: 28px;
+        line-height: 36px;
+        margin-bottom: 24px;
+    }
+
+    .email-form {
+        margin-bottom: 20px;
+    }
+
+    .input-with-line {
+        width: 200px;
     }
 
     .footer {
-        padding: 20px 20px 0;
+        position: relative;
+        padding: 15px 20px 0;
     }
 
     .logo {
-        font-size: 12vw;
+        width: 100%;
     }
 
     .tagline {
-        font-size: 16px;
-        line-height: 28px;
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 15px;
     }
 
     .neo-header {
-        padding: 16px 20px;
+        padding: 12px 16px;
     }
 
     .cookie-banner {
         flex-direction: column;
         text-align: center;
-        padding: 20px;
+        padding: 16px;
+        gap: 12px;
     }
 
     .cookie-banner p {
+        font-size: 12px;
+    }
+
+    .cookie-btn {
+        font-size: 12px;
+        padding: 6px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-container {
+        padding: 70px 16px 100px;
+    }
+
+    #lottie-animation {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 16px;
+    }
+
+    .headline {
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 20px;
+    }
+
+    .coming-soon {
+        font-size: 0.85em;
+        margin-top: 8px;
+    }
+
+    .input-with-line {
+        width: 180px;
+    }
+
+    .input-with-line input {
+        font-size: 14px;
+        height: 36px;
+        line-height: 36px;
+    }
+
+    .form-fields {
+        gap: 8px;
+    }
+
+    .submit-btn {
+        width: 26px;
+        height: 26px;
+    }
+
+    .submit-btn .btn-arrow {
+        width: 14px;
+    }
+
+    .tagline {
         font-size: 13px;
+        line-height: 20px;
+        padding: 0 10px;
+    }
+
+    .legal-nav a {
+        font-size: 10px;
+    }
+
+    .legal-nav .divider {
+        font-size: 10px;
     }
 }
