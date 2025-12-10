@@ -1,43 +1,15 @@
-/* Fonts */
-@font-face {
-    font-family: 'PP Editorial New';
-    src: url('assets/fonts/PPEditorialNew-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'PP Editorial New';
-    src: url('assets/fonts/PPEditorialNew-Italic.woff2') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'PP Editorial New';
-    src: url('assets/fonts/PPEditorialNew-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'PP Editorial New';
-    src: url('assets/fonts/PPEditorialNew-BoldItalic.woff2') format('woff2');
-    font-weight: 700;
-    font-style: italic;
-}
-
-/* CSS Variables */
+/* --- VARIABLES --- */
 :root {
     --dark-blue: #0F1956;
     --orange: #ED4C14;
     --bg-gray: #EBEBEB;
+    --font-sans: 'Manrope', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+    --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Global Styles */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
+/* --- GLOBAL SETUP --- */
+*, *::before, *::after { box-sizing: border-box; }
 
 body, html {
     margin: 0;
@@ -45,154 +17,74 @@ body, html {
     width: 100%;
     height: 100vh;
     background-color: var(--bg-gray);
-    font-family: 'PP Editorial New', Georgia, serif;
-    overflow: hidden;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-/* Main Container */
-.splash-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 20px;
-    padding-bottom: 220px;
-}
-
-/* Lottie Animation */
-#lottie-animation {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 30px;
-}
-
-/* Headline */
-.headline {
-    width: 983px;
-    max-width: 100%;
-    font-family: 'PP Editorial New', Georgia, serif;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 72px;
-    letter-spacing: 0;
-    text-align: center;
+    font-family: var(--font-sans);
+    overflow: hidden; /* Prevent scrollbars for the app-like feel */
     color: var(--dark-blue);
-    margin: 0 0 40px 0;
 }
 
-.orange-text {
-    color: var(--orange);
+::selection {
+    background-color: var(--orange);
+    color: white;
 }
 
-.coming-soon {
-    display: block;
+/* --- 1. TEXTURE OVERLAY --- */
+.texture-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: 50;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Email Form */
-.email-form {
-    margin-bottom: 40px;
-}
-
-.email-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-}
-
-.input-with-line {
-    width: 230px;
-    border-bottom: 1px solid var(--dark-blue);
-}
-
-.input-with-line input {
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 40px;
-    letter-spacing: 0;
-    color: var(--dark-blue);
-    background: transparent;
-    border: none;
-    outline: none;
+/* --- 2. PHYSICS CANVAS --- */
+#physics-canvas {
+    position: fixed;
+    inset: 0;
     width: 100%;
-    height: 40px;
-    padding: 0;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through */
+    z-index: 45; /* Above background, below UI */
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.input-with-line input::placeholder {
-    color: var(--dark-blue);
+#physics-canvas.active {
+    opacity: 1;
 }
 
-
-/* Submit Button */
-.submit-btn {
-    width: 29px;
-    height: 29px;
-    background: var(--orange);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-    position: relative;
+/* --- 3. NEO-ANCHORS (Corner Crosses) --- */
+.neo-anchors {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 40;
+    padding: 24px;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
 }
 
-.submit-btn:hover {
-    transform: scale(1.1);
-}
-
-.submit-btn .btn-circle {
-    display: none;
-}
-
-.submit-btn .btn-arrow {
-    width: 17px;
-    height: auto;
-}
-
-/* Footer */
-.footer {
-    width: 100%;
-    padding: 0;
-    text-align: center;
+.corner-plus {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 16px;
+    height: 16px;
 }
-
-/* Tagline */
-.tagline {
-    font-family: 'PP Editorial New', Georgia, serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 40px;
-    text-align: center;
-    color: var(--dark-blue);
-    margin: 0 0 20px 0;
+.corner-plus::before, .corner-plus::after {
+    content: '';
+    position: absolute;
+    background: var(--dark-blue);
+    opacity: 0.2;
 }
+.corner-plus::before { width: 100%; height: 1px; top: 50%; left: 0; }
+.corner-plus::after { width: 1px; height: 100%; top: 0; left: 50%; }
 
-.tagline .orange-text {
-    color: var(--orange);
-}
+.top-left { top: 24px; left: 24px; }
+.top-right { top: 24px; right: 24px; }
+.bottom-left { bottom: 24px; left: 24px; }
+.bottom-right { bottom: 24px; right: 24px; }
 
-/* Legal Nav - Top Left */
+/* --- Legal Nav - Top Left --- */
 .legal-nav {
     position: absolute;
     top: 20px;
@@ -200,11 +92,11 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    z-index: 10;
+    z-index: 100;
 }
 
 .legal-nav a {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 11px;
     color: var(--dark-blue);
     text-decoration: none;
@@ -217,102 +109,275 @@ body {
 }
 
 .legal-nav .divider {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 11px;
     color: var(--dark-blue);
     opacity: 0.25;
 }
 
-/* Logo */
-.logo {
-    width: 100vw;
-    height: auto;
-    display: block;
-    margin: 0;
-    object-fit: contain;
-    box-sizing: border-box;
-    margin-bottom: -3px;
+/* --- 4. HEADER --- */
+.neo-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 40;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    opacity: 0;
+    animation: slideDown 1s ease 0.5s forwards;
 }
 
-/* Animations */
+.brand-name {
+    margin-left: 100px;
+}
+
+.server-time {
+    font-family: var(--font-mono);
+    opacity: 0.6;
+}
+
+/* --- 5. MAIN CONTAINER --- */
+.splash-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 100px; /* Space for footer */
+}
+
+/* Animation Wrapper (Holds Lottie) */
+.animation-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0s forwards;
+}
+
+#lottie-animation {
+    width: 100%;
+    height: 100%;
+}
+
+/* Hide Lottie when physics is active */
+.animation-wrapper.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* Headline */
 .headline {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 5vw, 72px); /* Responsive Typography */
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--dark-blue);
     opacity: 0;
-    animation: fadeInUp 1s ease-out 0.3s forwards;
+    animation: fadeInUp 1s ease 0.2s forwards;
 }
 
+.orange-text { color: var(--orange); }
+
+.italic-group {
+    font-style: italic;
+    position: relative;
+    display: inline-block;
+}
+
+.italic-group::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--orange);
+    transition: width 0.5s ease;
+    opacity: 0.6;
+}
+.italic-group:hover::after { width: 100%; }
+
+.coming-soon {
+    display: block;
+    font-size: 0.5em;
+    margin-top: 24px;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.4s forwards;
+}
+
+/* Form */
 .email-form {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
     opacity: 0;
-    animation: fadeInUp 1s ease-out 0.6s forwards;
+    animation: fadeInUp 1s ease 0.6s forwards;
 }
 
+.email-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.email-form input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(15, 25, 86, 0.3);
+    padding: 16px 50px 16px 0;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: var(--dark-blue);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.email-form input:focus {
+    border-color: var(--orange);
+}
+
+.email-form input::placeholder {
+    color: var(--dark-blue);
+    opacity: 0.3;
+}
+
+.submit-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    background: var(--orange);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover { background: #b94625; transform: translateY(-50%) scale(1.1); }
+.submit-btn:disabled { opacity: 0.7; cursor: wait; transform: translateY(-50%) scale(0.9); }
+
+.submit-btn.success { background: var(--dark-blue); }
+
+.form-message {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    font-size: 14px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.5s ease;
+}
+.form-message.visible { opacity: 1; transform: translateY(0); }
+
+/* --- 6. FOOTER --- */
 .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.hairline-vertical {
+    width: 1px;
+    height: 0;
+    background: var(--dark-blue);
+    opacity: 0.1;
+    margin-bottom: 20px;
+    animation: growLine 1s ease 0.8s forwards;
+}
+
+.tagline {
+    font-family: var(--font-serif);
+    font-size: clamp(16px, 2vw, 20px);
+    margin-bottom: 10px;
     opacity: 0;
-    animation: fadeInUp 1s ease-out 0.9s forwards;
+    animation: fadeInUp 1s ease 0.8s forwards;
 }
 
+.logo-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.giant-logo {
+    font-size: 15vw;
+    line-height: 0.8;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    white-space: nowrap;
+    text-align: center;
+    transform: translateY(100%);
+    animation: slideUpLogo 1.5s ease 0.5s forwards;
+}
+
+/* --- ANIMATIONS --- */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUpLogo {
+    from { transform: translateY(100%); }
+    to { transform: translateY(10%); }
+}
+@keyframes growLine {
+    to { height: 60px; }
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .headline {
-        font-size: 48px;
-        line-height: 56px;
-        width: 100%;
-        padding: 0 20px;
-    }
-
-    .logo {
-        font-size: 10vw;
-        height: auto;
-        line-height: 1.1;
-    }
-
-    .tagline {
-        font-size: 18px;
-        line-height: 32px;
-    }
+/* Icons */
+.icon-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
 }
+.icon-check { color: white; display: none; font-size: 14px; }
+.icon-arrow { display: block; }
 
-@media (max-width: 768px) {
-    .splash-container {
-        padding: 30px 20px;
-        padding-bottom: 150px;
-    }
+/* State classes for button */
+.submit-btn.loading .icon-arrow { display: none; }
+.submit-btn.loading .icon-spinner { display: block; }
 
-    #lottie-animation {
-        width: 60px;
-        height: 60px;
-    }
+.submit-btn.success .icon-arrow { display: none; }
+.submit-btn.success .icon-spinner { display: none; }
+.submit-btn.success .icon-check { display: block; }
 
-    .headline {
-        font-size: 32px;
-        line-height: 40px;
-    }
-
-    .footer {
-        padding: 20px 20px 0;
-    }
-
-    .logo {
-        font-size: 12vw;
-    }
-
-    .tagline {
-        font-size: 16px;
-        line-height: 28px;
-    }
-}
-
-/* Cookie Consent Banner */
+/* --- Cookie Consent Banner --- */
 .cookie-banner {
     position: fixed;
     bottom: 0;
@@ -338,7 +403,7 @@ body {
 }
 
 .cookie-banner p {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 14px;
     color: white;
     margin: 0;
@@ -360,7 +425,7 @@ body {
 }
 
 .cookie-btn {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 500;
     padding: 8px 20px;
@@ -385,7 +450,44 @@ body {
     opacity: 0.8;
 }
 
+/* Responsive Tweaks */
 @media (max-width: 768px) {
+    .server-time { display: none; }
+    .neo-anchors { padding: 12px; }
+    .headline {
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+    .brand-name { margin-left: 80px; }
+
+    .splash-container {
+        padding: 20px;
+        padding-bottom: 120px;
+    }
+
+    .animation-wrapper {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    .email-form {
+        max-width: 300px;
+        padding: 0 10px;
+    }
+
+    .footer {
+        padding-bottom: 10px;
+    }
+
+    .hairline-vertical {
+        margin-bottom: 15px;
+    }
+
+    .giant-logo {
+        font-size: 12vw;
+    }
+
     .cookie-banner {
         flex-direction: column;
         text-align: center;
@@ -394,5 +496,40 @@ body {
 
     .cookie-banner p {
         font-size: 13px;
+    }
+
+    .legal-nav {
+        top: 12px;
+        left: 12px;
+    }
+
+    .neo-header {
+        padding: 16px 20px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .headline {
+        font-size: clamp(24px, 7vw, 32px);
+    }
+
+    .coming-soon {
+        font-size: 0.6em;
+        margin-top: 16px;
+    }
+
+    .giant-logo {
+        font-size: 10vw;
+    }
+
+    .tagline {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .brand-name {
+        font-size: 10px;
+        margin-left: 70px;
     }
 }
