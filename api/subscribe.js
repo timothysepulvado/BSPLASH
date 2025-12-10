@@ -3,7 +3,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { email, name } = req.body;
+    const { email, firstName, lastName, phone } = req.body;
 
     if (!email || !email.includes('@')) {
         return res.status(400).json({ error: 'Valid email required' });
@@ -14,11 +14,6 @@ export default async function handler(req, res) {
         const apiKey = process.env.MAILCHIMP_API_KEY;
         const listId = 'b5d57fbac2';
         const dataCenter = apiKey.split('-')[1]; // 'us7'
-
-        // Split name into first and last
-        const nameParts = (name || '').trim().split(' ');
-        const firstName = nameParts[0] || '';
-        const lastName = nameParts.slice(1).join(' ') || '';
 
         const response = await fetch(
             `https://${dataCenter}.api.mailchimp.com/3.0/lists/${listId}/members`,
@@ -32,8 +27,9 @@ export default async function handler(req, res) {
                     email_address: email,
                     status: 'subscribed',
                     merge_fields: {
-                        FNAME: firstName,
-                        LNAME: lastName,
+                        FNAME: firstName || '',
+                        LNAME: lastName || '',
+                        PHONE: phone || '',
                     },
                 }),
             }

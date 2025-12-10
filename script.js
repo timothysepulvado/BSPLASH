@@ -49,16 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
     emailForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const nameInput = emailForm.querySelector('input[name="name"]');
-        const emailInput = emailForm.querySelector('input[type="email"]');
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const formFields = emailForm.querySelector('.form-fields');
+        const firstName = emailForm.querySelector('input[name="firstName"]').value.trim();
+        const lastName = emailForm.querySelector('input[name="lastName"]').value.trim();
+        const email = emailForm.querySelector('input[name="email"]').value.trim();
+        const phone = emailForm.querySelector('input[name="phone"]').value.trim();
 
-        if (email && name) {
+        const submitBtn = emailForm.querySelector('.submit-btn-new');
+        const successMessage = emailForm.querySelector('.success-message');
+
+        if (email && firstName && lastName) {
             // Show loading state
-            const originalHTML = formFields.innerHTML;
-            formFields.innerHTML = '<span style="color: var(--dark-blue);">Submitting...</span>';
+            submitBtn.classList.add('loading');
+            submitBtn.querySelector('.btn-text').textContent = 'PROCESSING';
 
             try {
                 const response = await fetch('/api/subscribe', {
@@ -66,21 +68,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ email, name }),
+                    body: JSON.stringify({
+                        email,
+                        firstName,
+                        lastName,
+                        phone
+                    }),
                 });
 
                 if (response.ok) {
-                    formFields.innerHTML = '<span style="color: var(--orange);">Thanks! We\'ll be in touch.</span>';
+                    submitBtn.classList.remove('loading');
+                    submitBtn.classList.add('success');
+                    submitBtn.querySelector('.btn-text').textContent = 'SENT';
+                    successMessage.classList.add('show');
                 } else {
                     throw new Error('Failed to subscribe');
                 }
             } catch (error) {
                 console.error('Subscription error:', error);
-                formFields.innerHTML = '<span style="color: var(--orange);">Something went wrong. Please try again.</span>';
+                submitBtn.classList.remove('loading');
+                submitBtn.querySelector('.btn-text').textContent = 'TRY AGAIN';
 
                 // Reset after 3 seconds
                 setTimeout(() => {
-                    formFields.innerHTML = originalHTML;
+                    submitBtn.querySelector('.btn-text').textContent = 'REQUEST ACCESS';
                 }, 3000);
             }
         }
