@@ -472,6 +472,10 @@ body {
 
 /* Small screens - stack form fields */
 @media (max-width: 540px) {
+    .email-form {
+        max-width: 280px;
+    }
+
     .form-row.two-col {
         grid-template-columns: 1fr;
         gap: 12px;
