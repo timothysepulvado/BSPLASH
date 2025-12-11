@@ -43,16 +43,72 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     background-color: var(--bg-gray);
     font-family: 'PP Editorial New', Georgia, serif;
-    overflow: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll from logo */
 }
 
 body {
     display: flex;
     flex-direction: column;
     position: relative;
+}
+
+/* Header */
+.neo-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 32px;
+    z-index: 40;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.3s forwards;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--dark-blue);
+}
+
+.legal-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legal-nav a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--dark-blue);
+    text-decoration: none;
+    opacity: 0.35;
+    transition: opacity 0.2s ease;
+}
+
+.legal-nav a:hover {
+    opacity: 0.7;
+}
+
+.legal-nav .divider {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: var(--dark-blue);
+    opacity: 0.25;
 }
 
 /* Main Container */
@@ -63,15 +119,14 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 40px 20px;
-    padding-bottom: 220px;
+    padding: 40px 20px 30px;
 }
 
 /* Lottie Animation */
 #lottie-animation {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 30px;
+    width: clamp(40px, 6vw, 80px);
+    height: clamp(40px, 6vw, 80px);
+    margin-bottom: clamp(16px, 3vw, 30px);
 }
 
 /* Headline */
@@ -79,14 +134,15 @@ body {
     width: 983px;
     max-width: 100%;
     font-family: 'PP Editorial New', Georgia, serif;
-    font-size: 64px;
+    font-size: clamp(28px, 5vw + 10px, 64px);
     font-style: normal;
     font-weight: 400;
-    line-height: 72px;
+    line-height: 1.15;
     letter-spacing: 0;
     text-align: center;
     color: var(--dark-blue);
-    margin: 0 0 40px 0;
+    margin: 0 0 clamp(20px, 4vw, 40px) 0;
+    padding: 0 16px;
 }
 
 .orange-text {
@@ -100,92 +156,179 @@ body {
 /* Email Form */
 .email-form {
     margin-bottom: 40px;
+    width: 100%;
+    max-width: 480px;
 }
 
-.email-input-wrapper {
+.form-grid {
     display: flex;
-    align-items: center;
-    gap: 11px;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.form-row.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
 }
 
 .input-with-line {
-    width: 230px;
     border-bottom: 1px solid var(--dark-blue);
+}
+
+.input-with-line.full-width {
+    width: 100%;
 }
 
 .input-with-line input {
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 400;
-    font-style: normal;
-    line-height: 40px;
-    letter-spacing: 0;
+    letter-spacing: 0.1em;
     color: var(--dark-blue);
     background: transparent;
     border: none;
     outline: none;
     width: 100%;
-    height: 40px;
+    height: 44px;
     padding: 0;
 }
 
 .input-with-line input::placeholder {
     color: var(--dark-blue);
+    opacity: 0.5;
 }
 
-
-/* Submit Button */
-.submit-btn {
-    width: 29px;
-    height: 29px;
-    background: var(--orange);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
+/* Submit Row */
+.submit-row {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
     position: relative;
 }
 
-.submit-btn:hover {
+.success-message {
+    position: absolute;
+    left: 0;
+    font-family: 'PP Editorial New', Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--dark-blue);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.5s ease;
+}
+
+.success-message.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* New Submit Button */
+.submit-btn-new {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.submit-btn-new:hover .btn-text {
+    color: var(--orange);
+}
+
+.submit-btn-new:hover .btn-circle {
     transform: scale(1.1);
 }
 
-.submit-btn .btn-circle {
-    display: none;
+.btn-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--dark-blue);
+    transition: color 0.3s ease;
 }
 
-.submit-btn .btn-arrow {
-    width: 17px;
-    height: auto;
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(237, 76, 20, 0.3);
+    position: relative;
 }
+
+.btn-circle .btn-arrow {
+    width: 16px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn-new:hover .btn-arrow {
+    transform: rotate(-45deg);
+}
+
+.btn-check {
+    display: none;
+    color: white;
+    font-size: 18px;
+}
+
+.btn-spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Loading state */
+.submit-btn-new.loading .btn-arrow { display: none; }
+.submit-btn-new.loading .btn-spinner { display: block; }
+.submit-btn-new.loading .btn-text { opacity: 0.7; }
+
+/* Success state */
+.submit-btn-new.success .btn-arrow { display: none; }
+.submit-btn-new.success .btn-check { display: block; }
+.submit-btn-new.success .btn-circle { background: var(--dark-blue); box-shadow: none; }
 
 /* Footer */
 .footer {
     width: 100%;
     padding: 0;
     text-align: center;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: auto;
+    flex-shrink: 0;
 }
 
 /* Tagline */
 .tagline {
     font-family: 'PP Editorial New', Georgia, serif;
-    font-size: 24px;
+    font-size: clamp(14px, 2vw + 6px, 24px);
     font-style: normal;
     font-weight: 400;
-    line-height: 40px;
+    line-height: 1.5;
     text-align: center;
     color: var(--dark-blue);
-    margin: 0 0 20px 0;
+    margin: 0 0 clamp(12px, 2vw, 20px) 0;
+    padding: 0 16px;
 }
 
 .tagline .orange-text {
@@ -230,53 +373,127 @@ body {
     }
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .headline {
-        font-size: 48px;
-        line-height: 56px;
-        width: 100%;
-        padding: 0 20px;
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--dark-blue);
+    padding: 16px 30px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.cookie-banner.show {
+    transform: translateY(0);
+}
+
+.cookie-banner.hidden {
+    display: none;
+}
+
+.cookie-banner p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: white;
+    margin: 0;
+}
+
+.cookie-banner a {
+    color: var(--orange);
+    text-decoration: none;
+}
+
+.cookie-banner a:hover {
+    text-decoration: underline;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.cookie-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.cookie-btn.accept {
+    background-color: var(--orange);
+    color: white;
+}
+
+.cookie-btn.decline {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cookie-btn:hover {
+    opacity: 0.8;
+}
+
+/* Responsive - Fluid scaling handles most sizing via clamp() */
+
+/* Tablet and below - adjust layout */
+@media (max-width: 900px) {
+    body {
+        padding-bottom: env(safe-area-inset-bottom, 0);
     }
 
-    .logo {
-        font-size: 10vw;
-        height: auto;
-        line-height: 1.1;
+    .splash-container {
+        justify-content: flex-start;
+        padding-top: 24px;
     }
 
-    .tagline {
-        font-size: 18px;
-        line-height: 32px;
+    .email-form {
+        max-width: 100%;
+    }
+
+    .neo-header {
+        position: relative;
+        padding: 12px 16px;
     }
 }
 
-@media (max-width: 768px) {
-    .splash-container {
-        padding: 30px 20px;
-        padding-bottom: 150px;
+/* Small screens - stack form fields */
+@media (max-width: 540px) {
+    .email-form {
+        max-width: 280px;
     }
 
-    #lottie-animation {
-        width: 60px;
-        height: 60px;
+    .form-row.two-col {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
-    .headline {
-        font-size: 32px;
-        line-height: 40px;
+    .cookie-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 14px;
+        gap: 10px;
     }
 
-    .footer {
-        padding: 20px 20px 0;
+    .cookie-banner p {
+        font-size: 12px;
     }
 
-    .logo {
-        font-size: 12vw;
-    }
-
-    .tagline {
-        font-size: 16px;
-        line-height: 28px;
+    .cookie-btn {
+        font-size: 12px;
+        padding: 8px 16px;
     }
 }

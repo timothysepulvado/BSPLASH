@@ -12,7 +12,7 @@ A "coming soon" splash page for BrandStudios.AI featuring email signup functiona
 
 - **Frontend:** Static HTML/CSS/JS
 - **Animation:** Lottie (dots.json)
-- **Database:** Supabase (cnimajaxjchgkubixuls)
+- **Email Signups:** Mailchimp API (List ID: b5d57fbac2, DC: us7)
 - **Hosting:** Vercel
 - **Fonts:** PP Editorial New (headlines), Poppins (body/input)
 
@@ -25,10 +25,11 @@ bsplash/
 ├── terms.html          # Terms of Service
 ├── style.css           # Main styles
 ├── legal.css           # Legal page styles
-├── script.js           # Lottie init + email form handling
+├── script.js           # Lottie init + form handling + cookie consent
 ├── vercel.json         # Vercel config (static site)
+├── HANDOFF.md          # Current session handoff notes
 ├── api/
-│   └── subscribe.js    # Email signup serverless function
+│   └── subscribe.js    # Mailchimp signup serverless function
 └── assets/
     ├── fonts/          # PP Editorial New woff2 files
     ├── images/         # logo.png
@@ -43,20 +44,21 @@ bsplash/
 
 ## Environment Variables (Vercel)
 
-- `NEXT_PUBLIC_SUPABASE_URL` - https://cnimajaxjchgkubixuls.supabase.co
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase publishable key
-- `SUPABASE_API_KEY` - Supabase secret key (for API)
+- `MAILCHIMP_API_KEY` - Mailchimp API key (format: xxxx-us7)
+- `NEXT_PUBLIC_SUPABASE_URL` - (legacy, commented out)
+- `SUPABASE_API_KEY` - (legacy, commented out)
 
 ## Branches
 
 - `main` - Production-ready code
-- `tim-dev` - Development branch with latest updates
+- `new` - Current working branch with Mailchimp integration
+- `tim-dev` - Older dev branch (different UI)
 
 ## Deployment
 
 ```bash
-# Link to cloud-city project (one-time)
-vercel link --project cloud-city --yes
+# Local dev
+vercel dev
 
 # Deploy to production
 vercel --prod
@@ -65,8 +67,9 @@ vercel --prod
 ## Features
 
 - Animated Lottie dots loader
-- Email signup form saves to Supabase `email_signups` table
-- Responsive design
-- Privacy Policy & Terms of Service pages
-- Subtle legal links in top-left corner
-- On-brand styling throughout
+- Multi-field signup form (First Name, Last Name, Email, Phone optional)
+- Mailchimp integration for email collection
+- Cookie consent banner
+- Privacy/Terms links in header
+- Responsive design (needs testing on mobile)
+- "REQUEST ACCESS" button with loading/success states
