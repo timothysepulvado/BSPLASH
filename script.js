@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstName = emailForm.querySelector('input[name="firstName"]').value.trim();
         const lastName = emailForm.querySelector('input[name="lastName"]').value.trim();
         const email = emailForm.querySelector('input[name="email"]').value.trim();
-        const phone = emailForm.querySelector('input[name="phone"]').value.trim();
 
         const submitBtn = emailForm.querySelector('.submit-btn-new');
         const successMessage = emailForm.querySelector('.success-message');
@@ -71,8 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({
                         email,
                         firstName,
-                        lastName,
-                        phone
+                        lastName
                     }),
                 });
 
