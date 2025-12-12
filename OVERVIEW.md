@@ -23,11 +23,12 @@ bsplash/
 ├── index.html          # Main splash page
 ├── privacy.html        # Privacy Policy
 ├── terms.html          # Terms of Service
-├── style.css           # Main styles
+├── style.css           # Main styles (fluid responsive with clamp)
 ├── legal.css           # Legal page styles
 ├── script.js           # Lottie init + form handling + cookie consent
 ├── vercel.json         # Vercel config (static site)
 ├── HANDOFF.md          # Current session handoff notes
+├── OVERVIEW.md         # This file
 ├── api/
 │   └── subscribe.js    # Mailchimp signup serverless function
 └── assets/
@@ -45,13 +46,10 @@ bsplash/
 ## Environment Variables (Vercel)
 
 - `MAILCHIMP_API_KEY` - Mailchimp API key (format: xxxx-us7)
-- `NEXT_PUBLIC_SUPABASE_URL` - (legacy, commented out)
-- `SUPABASE_API_KEY` - (legacy, commented out)
 
 ## Branches
 
-- `main` - Production-ready code
-- `new` - Current working branch with Mailchimp integration
+- `main` - Production (deployed to brandstudios.ai)
 - `tim-dev` - Older dev branch (different UI)
 
 ## Deployment
@@ -64,12 +62,13 @@ vercel dev
 vercel --prod
 ```
 
-## Features
+## Features (All Complete)
 
 - Animated Lottie dots loader
 - Multi-field signup form (First Name, Last Name, Email, Phone optional)
 - Mailchimp integration for email collection
 - Cookie consent banner
 - Privacy/Terms links in header
-- Responsive design (needs testing on mobile)
+- Fluid responsive design with clamp() typography
+- iOS Safari mobile fixes
 - "REQUEST ACCESS" button with loading/success states

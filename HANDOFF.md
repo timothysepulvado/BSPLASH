@@ -1,97 +1,72 @@
 # Handoff - BrandStudios.AI Splash Page
 
-## Current Status (Dec 10, 2025)
+## Current Status (Dec 11, 2025)
 
-**Branch:** `new` (working branch)
-**Last commit:** `9d0f585` - Added Mailchimp integration, name field, cookie/legal UI
+**Branch:** `main` (production)
+**Last commit:** `3e72ad0` - Merge: Mobile responsive redesign with Mailchimp integration
+**Live URL:** https://www.brandstudios.ai
 
-### What Was Done This Session
+### Production Status: COMPLETE
 
-1. **Mailchimp Integration** - Replaced Supabase with Mailchimp API for email signups
-   - API Key in `.env`: `MAILCHIMP_API_KEY`
-   - List ID: `b5d57fbac2` (BrandStudios.AI list)
-   - Data center: `us7`
-   - Supabase code is commented out in `api/subscribe.js` as backup
+All features deployed and working:
 
-2. **New Form Layout** - Grid-based form with:
-   - First Name | Last Name (side by side on desktop, stacked on mobile)
-   - Email Address (full width)
-   - Phone Number optional (full width)
-   - "REQUEST ACCESS" button with arrow, loading spinner, success states
+- **Mailchimp Integration** - Email signups working
+  - API Key in Vercel env: `MAILCHIMP_API_KEY`
+  - List ID: `b5d57fbac2` (BrandStudios.AI list)
+  - Data center: `us7`
 
-3. **Cookie Banner** - Added cookie consent banner with Accept/Decline
-   - Saves to localStorage
-   - Slides up after 1 second on first visit
+- **Form Layout** - Grid-based form with:
+  - First Name | Last Name (side by side on desktop, stacked on mobile)
+  - Email Address (full width)
+  - Phone Number optional (full width)
+  - "REQUEST ACCESS" button with loading spinner, success states
 
-4. **Legal Links** - Privacy | Terms links in top-left header
+- **Mobile Responsiveness** - Fully working
+  - Fluid typography with clamp()
+  - iOS Safari viewport fixes
+  - Scrolling fixed
+  - Form width constrained on mobile
 
-5. **Mobile Responsiveness** - STILL NEEDS WORK
-   - Made multiple fixes but user reports overlap and scrolling issues on iPhone
-   - Changed footer/header to `position: relative` on mobile
-   - Enabled `overflow-y: auto` for scrolling
-   - Reduced spacing/sizes significantly
+- **Cookie Banner** - Cookie consent with Accept/Decline
+  - Saves to localStorage
+  - Slides up after 1 second on first visit
 
-### What Needs To Be Done
+- **Legal Links** - Privacy | Terms links in top-left header
 
-1. **TEST MOBILE RESPONSIVENESS** - Check on actual iPhone, fix remaining issues
-   - User said "overlap and no scrolling" after latest changes
-   - May need to adjust padding, remove more fixed heights
+### Key Files
 
-2. **Commit and push changes** - Current changes not committed yet
-
-3. **Test Mailchimp form submission** - Form UI is done, test actual submission
-
-4. **Deploy to production** - Once mobile is fixed and tested
-
-### Key Files Modified
-
-- `index.html` - New form layout, header, cookie banner
-- `style.css` - New form styles, mobile breakpoints at 768px and 480px
-- `script.js` - Cookie handling, new form submission with loading states
-- `api/subscribe.js` - Mailchimp API (firstName, lastName, email, phone)
+- `index.html` - Main splash page
+- `style.css` - Styles with fluid responsive design
+- `script.js` - Cookie handling, form submission with loading states
+- `api/subscribe.js` - Mailchimp API serverless function
 
 ### Commands
 
 ```bash
-# Local dev (you have vercel dev working on your end)
+# Local dev
 vercel dev
 
-# Or simple static server (won't run API)
-npx serve -l 3000
-
-# Deploy when ready
+# Deploy to production
 vercel --prod
 ```
 
-### Environment Variables Needed
+### Environment Variables (Vercel)
 
 ```
-MAILCHIMP_API_KEY=<key from .env file>
-```
-
-### Testing Mailchimp
-
-```bash
-# Test API directly (use key from .env)
-curl -s -X POST "https://us7.api.mailchimp.com/3.0/lists/b5d57fbac2/members" \
-  -H "Authorization: apikey $MAILCHIMP_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"email_address": "test@example.com", "status": "subscribed", "merge_fields": {"FNAME": "Test", "LNAME": "User", "PHONE": ""}}'
-
-# Get list members
-curl -s -X GET "https://us7.api.mailchimp.com/3.0/lists/b5d57fbac2/members" \
-  -H "Authorization: apikey $MAILCHIMP_API_KEY"
+MAILCHIMP_API_KEY=<configured in Vercel>
 ```
 
 ### Branches
 
-- `new` - Current working branch (this one)
-- `main` - Production
-- `tim-dev` - Has older version with different UI (ball pit physics, etc.)
+- `main` - Production (current, deployed)
+- `tim-dev` - Older dev branch (different UI)
 
-### Priority for Next Session
+### Recent Commits
 
-1. Fix mobile responsiveness (test on real iPhone)
-2. Commit all changes
-3. Test form submission end-to-end
-4. Deploy
+```
+3e72ad0 Merge: Mobile responsive redesign with Mailchimp integration
+9e5f781 Constrain form width on mobile for better proportions
+29877e8 Add package.json for ESM support and fix Vercel config
+d0722e7 Implement fluid responsive design with clamp() typography
+a067797 Fix mobile responsiveness for iOS Safari
+```
