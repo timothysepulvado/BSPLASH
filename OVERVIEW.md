@@ -21,13 +21,11 @@ A "coming soon" splash page for BrandStudios.AI featuring email signup functiona
 ```
 bsplash/
 ├── index.html          # Main splash page
-├── privacy.html        # Privacy Policy
-├── terms.html          # Terms of Service
-├── style.css           # Main styles
-├── legal.css           # Legal page styles
+├── style.css           # Main styles (fluid responsive with clamp)
 ├── script.js           # Lottie init + form handling + cookie consent
 ├── vercel.json         # Vercel config (static site)
-├── HANDOFF.md          # Current session handoff notes
+├── HANDOFF.md          # Session handoff notes
+├── OVERVIEW.md         # This file
 ├── api/
 │   └── subscribe.js    # Mailchimp signup serverless function
 └── assets/
@@ -45,13 +43,11 @@ bsplash/
 ## Environment Variables (Vercel)
 
 - `MAILCHIMP_API_KEY` - Mailchimp API key (format: xxxx-us7)
-- `NEXT_PUBLIC_SUPABASE_URL` - (legacy, commented out)
-- `SUPABASE_API_KEY` - (legacy, commented out)
 
 ## Branches
 
-- `main` - Production-ready code
-- `new` - Current working branch with Mailchimp integration
+- `main` - Production (deployed to brandstudios.ai)
+- `new` - Development branch
 - `tim-dev` - Older dev branch (different UI)
 
 ## Deployment
@@ -64,12 +60,13 @@ vercel dev
 vercel --prod
 ```
 
-## Features
+## Features (All Complete)
 
 - Animated Lottie dots loader
-- Multi-field signup form (First Name, Last Name, Email, Phone optional)
+- Signup form (First Name, Last Name, Email)
 - Mailchimp integration for email collection
 - Cookie consent banner
 - Privacy/Terms links in header
-- Responsive design (needs testing on mobile)
-- "REQUEST ACCESS" button with loading/success states
+- Fluid responsive design with clamp() typography
+- iOS Safari mobile fixes
+- "SUBMIT" button with loading/success states
