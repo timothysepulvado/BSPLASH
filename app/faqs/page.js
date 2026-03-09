@@ -10,47 +10,47 @@ export const metadata = {
 const faqItems = [
   {
     question: 'What is BrandStudios.AI?',
-    answer: 'BrandStudios.AI is a creative intelligence platform that learns your brand\'s unique identity and produces on-brand creative content at enterprise scale — while keeping human judgment at the center of every decision.',
+    answer: 'The Operating System for AI Brand Creative. It brings human intelligence to every piece of work that ships. The system remembers your brand, evaluates work against that memory, and keeps human judgment attached as volume expands. It sits on top of your existing tools and becomes the layer that governs what goes out the door.',
   },
   {
-    question: 'How is this different from other AI creative tools?',
-    answer: 'Most AI tools generate content from generic models. BrandStudios.AI builds a living Brand Memory that understands your specific brand DNA — tone, visual identity, strategic positioning — and ensures every output is unmistakably yours.',
+    question: 'What does BrandStudios.AI produce?',
+    answer: 'Real marketing work, continuously, across channels and markets. Campaign and launch copy, video and motion assets, social and channel variations, localized and regional adaptations, creative production across teams and partners. The work scales. The standard stays coherent.',
+  },
+  {
+    question: 'What is the difference between a tool and an operating system?',
+    answer: 'A tool creates output. An operating system sets the rules the output must live under. Tools can generate copy, images, or video faster. An operating system carries memory forward, measures every output against that memory, and learns from every approval so the standard holds as volume grows. Tools help teams produce more. An operating system keeps human judgment continuous.',
+  },
+  {
+    question: 'Where does BrandStudios.AI sit in our stack?',
+    answer: 'On top of it. Keep the tools you use today. Add new ones later. BrandStudios.AI connects to your creative and AI tools and governs output through a persistent memory and scoring layer. Your stack produces work. BrandStudios.AI determines whether it meets the standard.',
   },
   {
     question: 'What is Brand Memory?',
-    answer: 'Brand Memory is our proprietary system that captures and operationalizes your brand\'s identity. It learns from every interaction, building a deeper understanding of what makes your brand unique — and applying that knowledge to every creative output.',
+    answer: 'Brand Memory is a structured system that captures how your brand actually behaves. It holds voice, tone, visual codes, design rules, positioning guardrails, best approved work, approval patterns, and performance patterns. It is built from real work, not just documentation. And it does not reset each campaign. It carries forward, which means the system gets sharper the longer it runs. Every approval, every correction, every piece of work that ships adds to a living standard that new work is measured against.',
   },
   {
-    question: 'What is the Brand Fidelity Index™?',
-    answer: 'The Brand Fidelity Index™ is a quantitative measure of how consistently your creative output reflects your brand\'s core identity. It scores content across multiple dimensions — visual coherence, tonal alignment, strategic consistency — giving you governance over brand integrity at scale.',
+    question: 'What is Brand Fidelity?',
+    answer: 'Brand Fidelity shows how well the creative standard holds as output expands. Every asset is evaluated before it reaches a human reviewer. Brand Grade compares quality to your best approved work. Brand Drift measures deviation from Brand Memory. Brand Fidelity balances grade against drift. The result is a clear, repeatable standard that can scale. Human review shifts upward. Less time fixing basics, more time deciding direction.',
   },
   {
-    question: 'Who is BrandStudios.AI built for?',
-    answer: 'BrandStudios.AI is built for creative teams, brand managers, and marketing leaders at enterprise organizations who need to scale creative output without sacrificing brand quality or creative judgment.',
+    question: 'How does this raise the floor?',
+    answer: 'In large organizations, output quality varies by team, region, and partner. BrandStudios.AI makes the standard portable. Misalignment gets caught early. Weak work does not scale. The baseline improves across everyone who touches the brand. The floor rises because human judgment is embedded into the process, not dependent on who happens to be reviewing the work.',
   },
   {
-    question: 'Does BrandStudios.AI replace creative teams?',
-    answer: 'No. BrandStudios.AI amplifies creative teams. It handles the operational complexity of producing on-brand content at scale, freeing human creatives to focus on strategy, innovation, and the judgment calls that machines can\'t make.',
+    question: 'Who is this built for?',
+    answer: 'Brand leaders, creative directors, and marketing operations teams inside organizations where output volume has outpaced the ability to maintain a consistent standard. If your brand ships creative across multiple teams, regions, agencies, or partners, and you need human intelligence governing that work without slowing it down, this is built for you.',
   },
   {
-    question: 'How does the platform learn my brand?',
-    answer: 'Through a structured onboarding process and ongoing interaction. BrandStudios.AI ingests your brand guidelines, analyzes existing creative assets, and continuously refines its understanding through feedback loops with your creative team.',
+    question: 'How is data handled?',
+    answer: 'Brand assets, creative work, and approval data stay within your environment. BrandStudios.AI does not train general models on your brand data, share it across clients, or use it for any purpose beyond serving your brand. Enterprise-grade security, encryption, and access controls are standard. Specific compliance requirements can be addressed during onboarding.',
   },
   {
-    question: 'What types of content can BrandStudios.AI produce?',
-    answer: 'The platform supports a wide range of creative outputs including campaign assets, social content, brand communications, visual design, copywriting, and more — all calibrated to your brand\'s unique identity and standards.',
+    question: 'Where does our data go, and which AI models will have access to it?',
+    answer: 'BrandStudios.AI operates on a model-agnostic architecture with strict data boundaries. All client and proprietary work runs on approved U.S.-based or client-designated infrastructure. No client data is processed through offshore-hosted models. We may benchmark emerging models for research purposes using synthetic prompts only. Production workflows remain within trusted environments. Enterprises retain full control over infrastructure selection and data boundaries.',
   },
   {
-    question: 'How does BrandStudios.AI ensure brand consistency?',
-    answer: 'Every output is measured against your Brand Memory using the Brand Fidelity Index™. Content that doesn\'t meet your brand\'s standards is flagged before it goes live, creating a governance layer that scales with your organization.',
-  },
-  {
-    question: 'Can BrandStudios.AI integrate with our existing tools?',
-    answer: 'Yes. BrandStudios.AI is designed to integrate with existing creative workflows, DAM systems, and marketing platforms. We work with your team to ensure seamless adoption without disrupting established processes.',
-  },
-  {
-    question: 'How do I get started?',
-    answer: 'Request a demo and our team will walk you through the platform, discuss your brand\'s specific needs, and outline a tailored implementation plan. We typically have teams up and running within weeks, not months.',
+    question: 'Can we download the BrandStudios.AI banger?',
+    answer: 'Yes. We made a track to mark what we believe. If you build a system for creative intelligence, you should create culture too. Download it and keep it.',
   },
 ];
 
