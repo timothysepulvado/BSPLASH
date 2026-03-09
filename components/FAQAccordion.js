@@ -7,8 +7,11 @@ function FAQItem({ question, answer, isOpen, onClick }) {
   return (
     <div className={`${styles.item} ${isOpen ? styles.open : ''}`}>
       <button className={styles.question} onClick={onClick} aria-expanded={isOpen}>
-        <span>{question}</span>
-        <span className={styles.icon}>{isOpen ? '−' : '+'}</span>
+        <span className={styles.questionText}>{question}</span>
+        <span className={styles.circleIcon}>
+          <span className={styles.circleBar} />
+          <span className={`${styles.circleBar} ${styles.circleBarVertical}`} />
+        </span>
       </button>
       <div className={styles.answerWrapper}>
         <div className={styles.answer}>

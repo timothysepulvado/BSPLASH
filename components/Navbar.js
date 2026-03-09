@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from './Navbar.module.css';
 import CTAButton from './CTAButton';
 
@@ -20,13 +19,9 @@ export default function Navbar() {
     <nav className={styles.nav}>
       <div className={styles.inner}>
         <Link href="/" className={styles.logo}>
-          <Image
-            src="/images/logo.png"
-            alt="BrandStudios.AI"
-            width={180}
-            height={30}
-            priority
-          />
+          <span className={styles.logoText}>
+            BrandStudios<span className={styles.logoDot}>.</span>AI
+          </span>
         </Link>
 
         <div className={styles.links}>

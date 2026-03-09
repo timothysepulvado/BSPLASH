@@ -1,10 +1,15 @@
 .accordion {
     width: 100%;
-    max-width: 800px;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 .item {
-    border-bottom: 1px solid rgba(15, 25, 86, 0.15);
+    border-bottom: 1px solid rgba(15, 25, 86, 0.12);
+}
+
+.item:first-child {
+    border-top: 1px solid rgba(15, 25, 86, 0.12);
 }
 
 .question {
@@ -12,30 +17,69 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 24px 0;
+    padding: 28px 0;
     background: none;
     border: none;
     cursor: pointer;
-    font-family: var(--font-poppins);
-    font-size: clamp(15px, 1.2vw, 18px);
-    font-weight: 500;
-    color: var(--dark-blue);
     text-align: left;
-    gap: 20px;
+    gap: 24px;
     transition: color 0.2s ease;
 }
 
-.question:hover {
+.question:hover .questionText {
     color: var(--orange);
 }
 
-.icon {
-    font-size: 24px;
-    font-weight: 300;
+.question:hover .circleIcon {
+    border-color: var(--orange);
+}
+
+.question:hover .circleBar {
+    background-color: var(--orange);
+}
+
+.questionText {
+    font-family: var(--font-poppins);
+    font-size: clamp(14px, 1.1vw, 15px);
+    font-weight: 400;
+    color: var(--dark-blue);
+    line-height: 1.5;
+    transition: color 0.2s ease;
+}
+
+/* Circle toggle icon */
+.circleIcon {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    border: 1.5px solid var(--dark-blue);
     flex-shrink: 0;
-    transition: transform 0.3s ease;
-    width: 24px;
-    text-align: center;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Horizontal bar (always visible — forms the minus) */
+.circleBar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 1.5px;
+    background-color: var(--dark-blue);
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Vertical bar (rotates away when open — forms the plus) */
+.circleBarVertical {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* Open state: rotate vertical bar to 0 so it collapses into the horizontal */
+.open .circleBarVertical {
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0;
 }
 
 .answerWrapper {
@@ -45,16 +89,16 @@
 }
 
 .open .answerWrapper {
-    max-height: 300px;
+    max-height: 400px;
 }
 
 .answer {
-    padding: 0 0 24px;
+    padding: 0 0 28px;
 }
 
 .answer p {
     font-family: var(--font-poppins);
-    font-size: clamp(14px, 1vw, 16px);
-    color: rgba(15, 25, 86, 0.7);
-    line-height: 1.7;
+    font-size: clamp(13px, 1vw, 15px);
+    color: rgba(15, 25, 86, 0.65);
+    line-height: 1.75;
 }

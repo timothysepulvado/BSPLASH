@@ -7,7 +7,7 @@ export default function PreFooterCTA() {
       <div className={styles.inner}>
         <h2 className={styles.headline}>
           The Future Belongs to Intelligence<br />
-          That Stays <em>Human</em>
+          <em>That Stays Human</em>
         </h2>
         <CTAButton text="Request a Demo" />
       </div>
