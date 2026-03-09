@@ -1,0 +1,174 @@
+.hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(60px, 10vw, 120px) var(--container-padding);
+}
+
+.heroContent {
+    max-width: 800px;
+}
+
+.heroHeadline {
+    font-family: var(--font-editorial);
+    font-size: clamp(36px, 5vw + 10px, 72px);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--dark-blue);
+    margin-bottom: 24px;
+}
+
+.heroHeadline em {
+    color: var(--orange);
+    font-style: italic;
+}
+
+.heroSub {
+    font-family: var(--font-poppins);
+    font-size: clamp(15px, 1.2vw, 18px);
+    color: rgba(15, 25, 86, 0.7);
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: clamp(60px, 8vw, 140px) 0;
+}
+
+.sectionDark {
+    padding: clamp(60px, 8vw, 140px) 0;
+    background-color: var(--dark-blue);
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    text-align: center;
+}
+
+.sectionHeadline {
+    font-family: var(--font-editorial);
+    font-size: clamp(28px, 4vw + 8px, 56px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--dark-blue);
+    margin-bottom: 20px;
+}
+
+.sectionHeadline em {
+    font-style: italic;
+}
+
+.sectionBody {
+    font-family: var(--font-poppins);
+    font-size: clamp(14px, 1vw + 4px, 18px);
+    color: rgba(15, 25, 86, 0.65);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* Shift Grid */
+.shiftGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.shiftCard {
+    text-align: left;
+    padding: clamp(24px, 3vw, 40px);
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow: 0 2px 20px rgba(15, 25, 86, 0.06);
+}
+
+.shiftHighlight {
+    background: var(--dark-blue);
+    color: var(--white);
+}
+
+.shiftCard h4 {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: var(--orange);
+}
+
+.shiftCard p {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(15, 25, 86, 0.65);
+}
+
+.shiftHighlight p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Compound Grid */
+.compoundGrid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+}
+
+.compoundItem {
+    flex: 1;
+    min-width: 200px;
+    max-width: 260px;
+    padding: 32px 24px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(15, 25, 86, 0.06);
+}
+
+.compoundNumber {
+    font-family: var(--font-editorial);
+    font-size: 20px;
+    font-style: italic;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.compoundItem p {
+    font-family: var(--font-poppins);
+    font-size: 13px;
+    color: rgba(15, 25, 86, 0.6);
+    line-height: 1.5;
+}
+
+.compoundArrow {
+    font-size: 24px;
+    color: var(--orange);
+}
+
+@media (max-width: 900px) {
+    .shiftGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .compoundArrow {
+        transform: rotate(90deg);
+    }
+
+    .compoundGrid {
+        flex-direction: column;
+    }
+
+    .compoundItem {
+        max-width: 100%;
+    }
+}

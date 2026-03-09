@@ -1,0 +1,313 @@
+/* Hero */
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(60px, 10vw, 120px) var(--container-padding);
+}
+
+.heroContent {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.heroHeadline {
+    font-family: var(--font-editorial);
+    font-size: clamp(36px, 6vw + 10px, 80px);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--dark-blue);
+    letter-spacing: -0.02em;
+}
+
+.heroHeadline em {
+    color: var(--orange);
+    font-style: italic;
+}
+
+.heroSub {
+    font-family: var(--font-poppins);
+    font-size: clamp(15px, 1.2vw, 18px);
+    color: rgba(15, 25, 86, 0.7);
+    line-height: 1.6;
+    max-width: 560px;
+}
+
+/* Shared Section Styles */
+.section {
+    padding: clamp(60px, 8vw, 140px) 0;
+}
+
+.sectionDark {
+    padding: clamp(60px, 8vw, 140px) 0;
+    background-color: var(--dark-blue);
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    text-align: center;
+}
+
+.sectionLabel {
+    font-family: var(--font-poppins);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+}
+
+.sectionHeadline {
+    font-family: var(--font-editorial);
+    font-size: clamp(28px, 4vw + 8px, 56px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--dark-blue);
+    margin-bottom: 20px;
+}
+
+.sectionHeadline em {
+    font-style: italic;
+}
+
+.sectionBody {
+    font-family: var(--font-poppins);
+    font-size: clamp(14px, 1vw + 4px, 18px);
+    color: rgba(15, 25, 86, 0.65);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* Three Pillars */
+.pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 48px);
+    margin-top: 60px;
+}
+
+.pillar {
+    text-align: center;
+    padding: clamp(30px, 3vw, 48px);
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow: 0 2px 20px rgba(15, 25, 86, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(15, 25, 86, 0.1);
+}
+
+.pillarIcon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.pillar h3 {
+    font-family: var(--font-editorial);
+    font-size: clamp(20px, 1.8vw, 28px);
+    color: var(--dark-blue);
+    margin-bottom: 12px;
+}
+
+.pillar p {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: rgba(15, 25, 86, 0.65);
+    line-height: 1.6;
+}
+
+/* Comparison Grid */
+.comparisonGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.comparisonCol {
+    padding: clamp(24px, 3vw, 40px);
+    border-radius: 16px;
+    background: var(--white);
+    text-align: left;
+}
+
+.comparisonHighlight {
+    background: var(--dark-blue);
+    color: var(--white);
+}
+
+.comparisonLabel {
+    font-family: var(--font-poppins);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--dark-blue);
+}
+
+.comparisonHighlight .comparisonLabel {
+    color: var(--orange);
+}
+
+.comparisonList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.comparisonList li {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(15, 25, 86, 0.65);
+    padding-left: 20px;
+    position: relative;
+}
+
+.comparisonList li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: rgba(15, 25, 86, 0.3);
+    font-weight: 700;
+}
+
+.comparisonHighlight .comparisonList li {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.comparisonHighlight .comparisonList li::before {
+    content: '✓';
+    color: var(--orange);
+}
+
+/* Difference Table */
+.diffTable {
+    margin-top: 48px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.diffRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(15, 25, 86, 0.1);
+    text-align: left;
+}
+
+.diffLabel {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-blue);
+}
+
+.diffGeneric {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: rgba(15, 25, 86, 0.5);
+}
+
+.diffBs {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: var(--orange);
+    font-weight: 500;
+}
+
+/* Metrics */
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 3vw, 40px);
+    margin-top: 60px;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.metricNumber {
+    font-family: var(--font-editorial);
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 400;
+    color: var(--orange);
+    line-height: 1;
+}
+
+.metricLabel {
+    font-family: var(--font-poppins);
+    font-size: 13px;
+    color: rgba(15, 25, 86, 0.65);
+    line-height: 1.4;
+    max-width: 180px;
+}
+
+/* FAQ Wrapper */
+.faqWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .pillars {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .comparisonGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .diffRow {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px 0;
+    }
+
+    .diffGeneric,
+    .diffBs {
+        padding-left: 12px;
+    }
+
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        min-height: 70vh;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+}

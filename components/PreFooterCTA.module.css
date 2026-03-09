@@ -1,0 +1,28 @@
+.section {
+    background: linear-gradient(180deg, var(--bg-gray) 0%, #d9dce8 50%, var(--bg-gray) 100%);
+    padding: clamp(80px, 12vw, 160px) 0;
+    text-align: center;
+}
+
+.inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.headline {
+    font-family: var(--font-editorial);
+    font-size: clamp(28px, 4vw + 8px, 56px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--dark-blue);
+    max-width: 800px;
+}
+
+.headline em {
+    font-style: italic;
+}
