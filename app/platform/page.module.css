@@ -6,6 +6,18 @@
     justify-content: center;
     text-align: center;
     padding: clamp(60px, 10vw, 120px) var(--container-padding);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L40 20 L20 40 L0 20Z' fill='none' stroke='%230F1956' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: 40px 40px;
+    opacity: 0.04;
+    pointer-events: none;
 }
 
 .heroContent {
@@ -84,6 +96,26 @@
     margin: 0 auto;
 }
 
+/* Venn Diagram */
+.vennDiagram {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+}
+
+.vennSvg {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+.vennLabel {
+    font-family: var(--font-poppins);
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--dark-blue);
+}
+
 /* Cards */
 .cards {
     display: grid;
@@ -106,8 +138,24 @@
 }
 
 .cardIcon {
-    font-size: 36px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(237, 76, 20, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
+}
+
+.sectionImage {
+    margin-top: 40px;
+}
+
+.featureImage {
+    border-radius: 16px;
+    max-width: 100%;
+    height: auto;
 }
 
 .card h3 {

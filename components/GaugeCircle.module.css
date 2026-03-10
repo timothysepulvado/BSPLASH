@@ -1,0 +1,43 @@
+.gauge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress {
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.score {
+    font-family: var(--font-editorial);
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--orange);
+    line-height: 1;
+}
+
+.text {
+    font-family: var(--font-poppins);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(15, 25, 86, 0.5);
+    max-width: 120px;
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress {
+        transition: none;
+    }
+}

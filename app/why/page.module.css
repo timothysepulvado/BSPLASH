@@ -5,6 +5,18 @@
     justify-content: center;
     text-align: center;
     padding: clamp(60px, 10vw, 120px) var(--container-padding);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L40 20 L20 40 L0 20Z' fill='none' stroke='%230F1956' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: 40px 40px;
+    opacity: 0.04;
+    pointer-events: none;
 }
 
 .heroContent {
@@ -70,6 +82,22 @@
     line-height: 1.7;
     max-width: 680px;
     margin: 0 auto;
+}
+
+/* Section Images */
+.sectionImage {
+    margin-top: 32px;
+}
+
+.featureImage {
+    border-radius: 16px;
+    max-width: 100%;
+    height: auto;
+}
+
+.gearsImage {
+    margin: 0 auto;
+    opacity: 0.9;
 }
 
 /* Shift Grid */

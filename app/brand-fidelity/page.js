@@ -1,6 +1,7 @@
 import styles from './page.module.css';
 import CTAButton from '@/components/CTAButton';
 import ScrollReveal from '@/components/ScrollReveal';
+import GaugeCircle from '@/components/GaugeCircle';
 
 export const metadata = {
   title: 'Brand Fidelity Index™ — BrandStudios.AI',
@@ -38,8 +39,7 @@ export default function BrandFidelityPage() {
           <div className={styles.container}>
             <div className={styles.scoreCard}>
               <div className={styles.scoreMain}>
-                <span className={styles.scoreNumber}>89</span>
-                <span className={styles.scoreLabel}>Brand Fidelity Score</span>
+                <GaugeCircle score={89} size={180} strokeWidth={10} label="Brand Fidelity Score" />
               </div>
               <div className={styles.scoreDimensions}>
                 {fidelityDimensions.map((dim) => (

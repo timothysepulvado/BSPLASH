@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './page.module.css';
 import CTAButton from '@/components/CTAButton';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -32,6 +33,9 @@ export default function WhyPage() {
             <h2 className={styles.sectionHeadline}>
               The Shift at <em>Scale</em>
             </h2>
+            <div className={styles.sectionImage}>
+              <Image src="/images/upscale.jpg" alt="Enterprise creative scaling with brand consistency" width={800} height={450} className={styles.featureImage} />
+            </div>
             <div className={styles.shiftGrid}>
               <div className={styles.shiftCard}>
                 <h4>The Problem</h4>
@@ -75,6 +79,9 @@ export default function WhyPage() {
               Brand Memory makes that knowledge operational — alive in every creative output,
               every time, everywhere.
             </p>
+            <div className={styles.sectionImage}>
+              <Image src="/icons/gears.gif" alt="Interconnected gears representing operational brand memory" width={200} height={200} unoptimized className={styles.gearsImage} />
+            </div>
           </div>
         </section>
       </ScrollReveal>
@@ -91,6 +98,9 @@ export default function WhyPage() {
               data reveals what resonates. Creative feedback refines understanding. The
               Insight Loop ensures that output number 1,000 is better than output number 1.
             </p>
+            <div className={styles.sectionImage}>
+              <Image src="/images/girl-working-laptop.gif" alt="Creative professional building compounding brand intelligence" width={600} height={400} unoptimized className={styles.featureImage} />
+            </div>
             <div className={styles.compoundGrid}>
               <div className={styles.compoundItem}>
                 <span className={styles.compoundNumber}>Output 1</span>

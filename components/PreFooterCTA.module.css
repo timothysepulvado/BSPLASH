@@ -1,5 +1,9 @@
 .section {
-    background: linear-gradient(180deg, #EBEBEB 0%, #dde3ef 30%, #e8ecf4 50%, #dde3ef 70%, #EBEBEB 100%);
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(221, 227, 239, 0.6), transparent),
+        radial-gradient(ellipse 60% 40% at 75% 60%, rgba(232, 236, 244, 0.5), transparent),
+        radial-gradient(ellipse 90% 30% at 50% 20%, rgba(200, 215, 240, 0.3), transparent),
+        linear-gradient(180deg, #EBEBEB 0%, #dde3ef 30%, #e0e8f5 50%, #dde3ef 70%, #EBEBEB 100%);
     padding: clamp(80px, 12vw, 160px) 0;
     text-align: center;
 }

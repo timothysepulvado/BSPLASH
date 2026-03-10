@@ -1,7 +1,10 @@
+import Image from 'next/image';
 import styles from './page.module.css';
 import CTAButton from '@/components/CTAButton';
 import FAQAccordion from '@/components/FAQAccordion';
 import ScrollReveal from '@/components/ScrollReveal';
+import PaletteIcon from '@/components/icons/PaletteIcon';
+import LoopIcon from '@/components/icons/LoopIcon';
 
 const faqItems = [
   {
@@ -82,6 +85,12 @@ export default function HomePage() {
               and performance insight work as one — so your team creates with
               intelligence, not guesswork.
             </p>
+            <div className={styles.imageGrid}>
+              <Image src="/images/marketing-ideas.gif" alt="AI-generated marketing ideas flowing across channels" width={320} height={240} unoptimized />
+              <Image src="/images/campaign-ads.gif" alt="Campaign ads produced at scale with brand consistency" width={320} height={240} unoptimized />
+              <Image src="/images/girl-working-laptop.gif" alt="Creative professional directing AI-powered workflows" width={320} height={240} unoptimized />
+              <Image src="/images/upscale.jpg" alt="Enterprise brand creative scaled with human intelligence" width={320} height={240} />
+            </div>
           </div>
         </section>
       </ScrollReveal>
@@ -92,7 +101,9 @@ export default function HomePage() {
           <div className={styles.container}>
             <div className={styles.pillars}>
               <div className={styles.pillar}>
-                <div className={styles.pillarIcon}>🧠</div>
+                <div className={styles.pillarIcon}>
+                  <Image src="/icons/brain.png" alt="" width={40} height={40} aria-hidden="true" />
+                </div>
                 <h3>Brand Memory</h3>
                 <p>
                   A living record of your brand&apos;s identity — tone, visual language,
@@ -100,7 +111,9 @@ export default function HomePage() {
                 </p>
               </div>
               <div className={styles.pillar}>
-                <div className={styles.pillarIcon}>🎨</div>
+                <div className={styles.pillarIcon}>
+                  <PaletteIcon size={40} color="var(--orange)" />
+                </div>
                 <h3>Creative Studio</h3>
                 <p>
                   Produce on-brand content at scale. Every asset is guided by Brand Memory,
@@ -108,7 +121,9 @@ export default function HomePage() {
                 </p>
               </div>
               <div className={styles.pillar}>
-                <div className={styles.pillarIcon}>🔄</div>
+                <div className={styles.pillarIcon}>
+                  <LoopIcon size={40} color="var(--orange)" />
+                </div>
                 <h3>Insight Loop</h3>
                 <p>
                   Performance data feeds back into Brand Memory, creating a closed loop
@@ -238,19 +253,27 @@ export default function HomePage() {
             </h2>
             <div className={styles.metrics}>
               <div className={styles.metric}>
-                <span className={styles.metricNumber}>70%</span>
+                <div className={`${styles.metricCircle} ${styles.metricCircleOrange}`}>
+                  <span className={styles.metricNumber}>70%</span>
+                </div>
                 <span className={styles.metricLabel}>Reduction in Creative Production Time</span>
               </div>
               <div className={styles.metric}>
-                <span className={styles.metricNumber}>+500%</span>
+                <div className={`${styles.metricCircle} ${styles.metricCircleTeal}`}>
+                  <span className={styles.metricNumber}>+500%</span>
+                </div>
                 <span className={styles.metricLabel}>Creative Output Lift</span>
               </div>
               <div className={styles.metric}>
-                <span className={styles.metricNumber}>40%</span>
+                <div className={`${styles.metricCircle} ${styles.metricCircleOrange}`}>
+                  <span className={styles.metricNumber}>40%</span>
+                </div>
                 <span className={styles.metricLabel}>Improvement in Brand Consistency</span>
               </div>
               <div className={styles.metric}>
-                <span className={styles.metricNumber}>3x</span>
+                <div className={`${styles.metricCircle} ${styles.metricCircleTeal}`}>
+                  <span className={styles.metricNumber}>3x</span>
+                </div>
                 <span className={styles.metricLabel}>More Output, Same Team</span>
               </div>
             </div>

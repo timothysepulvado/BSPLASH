@@ -1,6 +1,9 @@
+import Image from 'next/image';
 import styles from './page.module.css';
 import CTAButton from '@/components/CTAButton';
 import ScrollReveal from '@/components/ScrollReveal';
+import PaletteIcon from '@/components/icons/PaletteIcon';
+import LoopIcon from '@/components/icons/LoopIcon';
 
 export const metadata = {
   title: 'Platform — BrandStudios.AI',
@@ -43,6 +46,19 @@ export default function PlatformPage() {
               Every creative output feeds data back into Brand Memory. Every insight
               sharpens the next execution. The system doesn&apos;t just produce — it compounds.
             </p>
+            <div className={styles.vennDiagram} aria-label="Brand DNA diagram showing the intersection of Brand Memory, Creative Studio, and Insight Loop">
+              <svg viewBox="0 0 400 350" className={styles.vennSvg}>
+                <circle cx="160" cy="150" r="110" fill="rgba(15, 25, 86, 0.08)" stroke="var(--dark-blue)" strokeWidth="1.5" />
+                <circle cx="240" cy="150" r="110" fill="rgba(237, 76, 20, 0.08)" stroke="var(--orange)" strokeWidth="1.5" />
+                <circle cx="200" cy="230" r="110" fill="rgba(46, 196, 182, 0.08)" stroke="var(--teal)" strokeWidth="1.5" />
+                <text x="115" y="120" textAnchor="middle" className={styles.vennLabel}>Brand</text>
+                <text x="115" y="140" textAnchor="middle" className={styles.vennLabel}>Memory</text>
+                <text x="285" y="120" textAnchor="middle" className={styles.vennLabel}>Creative</text>
+                <text x="285" y="140" textAnchor="middle" className={styles.vennLabel}>Studio</text>
+                <text x="200" y="290" textAnchor="middle" className={styles.vennLabel}>Insight</text>
+                <text x="200" y="310" textAnchor="middle" className={styles.vennLabel}>Loop</text>
+              </svg>
+            </div>
           </div>
         </section>
       </ScrollReveal>
@@ -53,7 +69,9 @@ export default function PlatformPage() {
           <div className={styles.container}>
             <div className={styles.cards}>
               <div className={styles.card}>
-                <div className={styles.cardIcon}>🧠</div>
+                <div className={styles.cardIcon}>
+                  <Image src="/icons/brain.png" alt="" width={36} height={36} aria-hidden="true" />
+                </div>
                 <h3>Brand Memory</h3>
                 <p>
                   The foundation. A living intelligence that captures your brand&apos;s DNA —
@@ -68,7 +86,9 @@ export default function PlatformPage() {
                 </ul>
               </div>
               <div className={styles.card}>
-                <div className={styles.cardIcon}>🎨</div>
+                <div className={styles.cardIcon}>
+                  <PaletteIcon size={36} color="var(--orange)" />
+                </div>
                 <h3>Creative Studio</h3>
                 <p>
                   The engine. Produce on-brand creative at enterprise scale — every asset
@@ -82,7 +102,9 @@ export default function PlatformPage() {
                 </ul>
               </div>
               <div className={styles.card}>
-                <div className={styles.cardIcon}>🔄</div>
+                <div className={styles.cardIcon}>
+                  <LoopIcon size={36} color="var(--orange)" />
+                </div>
                 <h3>Insight Loop</h3>
                 <p>
                   The intelligence. Performance data from every channel feeds back into
@@ -133,6 +155,9 @@ export default function PlatformPage() {
               Human judgment stays at the center. The platform handles operational complexity
               so your people can focus on what they do best: create.
             </p>
+            <div className={styles.sectionImage}>
+              <Image src="/images/girl-working-laptop.gif" alt="Creative professional using BrandStudios.AI platform" width={600} height={400} unoptimized className={styles.featureImage} />
+            </div>
             <div style={{ marginTop: '40px' }}>
               <CTAButton text="Request a Demo" />
             </div>
